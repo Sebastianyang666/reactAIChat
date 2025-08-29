@@ -7,6 +7,7 @@
  * @LastEditTime: 2025-08-27 15:05:12
  */
 import axios from 'axios';
+
 import { getToken } from './token';
 
 const request = axios.create({

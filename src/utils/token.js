@@ -24,4 +24,3 @@ export const clearToken = () => {
   localStorage.removeItem(KEY);
 };
 
-export { getToken, setToken, clearToken };

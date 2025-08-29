@@ -34,4 +34,4 @@ const get = (url, params) => {
   });
 };
 
-export { post, get };
+export { get,post };

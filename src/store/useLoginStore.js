@@ -7,9 +7,10 @@
  * @LastEditTime: 2025-08-27 15:00:58
  */
 import { create } from 'zustand';
+
 import UserApi from '../api/userApi.js';
-import { setToken, clearToken } from '../utils/token.js';
-const useLoginStore = create((set) => ({
+import { clearToken,setToken } from '../utils/token.js';
+const useLoginStore = create(() => ({
   token: '',
   // 用户登陆
   userLogin: async (userForm) => {
