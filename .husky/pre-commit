@@ -1,2 +1,2 @@
-npm test
-npm --no-install lint-staged
+npm run lint:fix
+npx lint-staged
