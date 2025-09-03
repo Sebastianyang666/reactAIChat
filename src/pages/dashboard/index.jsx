@@ -121,8 +121,17 @@ export default function Dashboard() {
             navigate(key);
           }}
           openKeys={openKeys}
-          onOpenChange={(openKeys) => setOpenKeys(openKeys)}
-          accordion={true}
+          onOpenChange={(keys) => {
+            // 手动实现手风琴效果：只允许打开一个菜单
+            const latestOpenKey = keys.find(key => openKeys.indexOf(key) === -1);
+            if (latestOpenKey) {
+              // 如果是打开新菜单，只保留最新打开的
+              setOpenKeys([latestOpenKey]);
+            } else {
+              // 如果是关闭菜单，直接设置
+              setOpenKeys(keys);
+            }
+          }}
           style={{ 
             height: '100%', 
             borderInlineEnd: 0, 
