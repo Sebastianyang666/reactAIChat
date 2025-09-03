@@ -12,12 +12,16 @@ export default function MainLayout() {
 
   const collapsed = useSettingsStore((state) => state.collapsed);
   const setCollapsed = useSettingsStore((state) => state.setCollapsed);
+  const colorPrimary = useSettingsStore((state) => state.colorPrimary);
 
   return (
     <Layout hasSider className="w-screen overflow-hidden">
       <Sider />
       <Layout>
-        <Layout.Header className="flex items-center justify-between dark:text-white sticky top-0 z-[999] border-b border-b-gray-200 dark:border-b-gray-700">
+        <Layout.Header 
+          className="flex items-center justify-between dark:text-white sticky top-0 z-[999] border-b border-b-gray-200 dark:border-b-gray-700"
+          style={{ backgroundColor: colorPrimary.startsWith('#') ? colorPrimary : `#${colorPrimary}` }}
+        >
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}

@@ -69,6 +69,10 @@ export default function Sider() {
   const [openKeys, setOpenKeys] = useState([]);
 
   const collapsed = useSettingsStore((state) => state.collapsed);
+  const colorPrimary = useSettingsStore((state) => state.colorPrimary);
+
+  console.log('Sider组件中获取的颜色:', colorPrimary);
+  console.log('即将应用的样式:', { backgroundColor: colorPrimary });
 
   // const { isDark } = useTheme();
   const isDark = false; // 临时设置
@@ -92,6 +96,7 @@ export default function Sider() {
       collapsible
       collapsed={collapsed}
       className="h-screen overflow-auto fixed top-0 left-0 bottom-0 dark:text-white"
+      style={{ backgroundColor: colorPrimary.startsWith('#') ? colorPrimary : `#${colorPrimary}` }}
     >
       <Link
         className="font-bold text-2xl hover:text-current h-[var(--layout-header-height)] flex justify-center items-center gap-2"

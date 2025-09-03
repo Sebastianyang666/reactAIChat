@@ -5,7 +5,7 @@ import zhCN from "antd/locale/zh_CN";
 import { RouterProvider } from "react-router-dom";
 
 import { router } from "./router";
-import { useSettingsStore } from "./stores/settings";
+import { useSettingsStore } from "./store/settings";
 
 export default function App() {
   const colorPrimary = useSettingsStore((state) => state.colorPrimary);
