@@ -8,30 +8,6 @@ import { useSettingsStore } from "@/store/settings";
 
 // import ReactIcon from "@/assets/react.svg?react";
 
-// 递归函数，找到匹配的菜单项
-const findSelectedKeys = (items, pathname, path = []) => {
-  const selectedKeys = [];
-  let openKeys = [];
-
-  const travel = (items, pathname, path) => {
-    for (const item of items || []) {
-      if (item?.key === pathname) {
-        selectedKeys.push(item.key);
-        openKeys = [...path];
-        return;
-      }
-      if (item.children) {
-        path.push(item.key);
-        travel(item.children, pathname, path);
-        path.pop();
-      }
-    }
-  };
-
-  travel(items, pathname, path);
-  return { selectedKeys, openKeys };
-};
-
 const items = [
   {
     icon: <HomeOutlined />,
@@ -60,6 +36,31 @@ const items = [
   },
 ];
 
+// 递归函数，找到匹配的菜单项
+const findSelectedKeys = (items, pathname, path = []) => {
+  const selectedKeys = [];
+  let openKeys = [];
+
+  const travel = (items, pathname, path) => {
+    for (const item of items || []) {
+      if (item?.key === pathname) {
+        selectedKeys.push(item.key);
+        openKeys = [...path];
+        return;
+      }
+      if (item.children) {
+        path.push(item.key);
+        travel(item.children, pathname, path);
+        path.pop();
+      }
+    }
+  };
+
+  travel(items, pathname, path);
+  return { selectedKeys, openKeys };
+};
+
+
 export default function Sider() {
   const location = useLocation();
 
@@ -71,11 +72,7 @@ export default function Sider() {
   const collapsed = useSettingsStore((state) => state.collapsed);
   const colorPrimary = useSettingsStore((state) => state.colorPrimary);
 
-  console.log('Sider组件中获取的颜色:', colorPrimary);
-  console.log('即将应用的样式:', { backgroundColor: colorPrimary });
 
-  // const { isDark } = useTheme();
-  const isDark = false; // 临时设置
 
   useEffect(() => {
     if (location.pathname === "/") return;
@@ -92,21 +89,26 @@ export default function Sider() {
 
   return (
     <Layout.Sider
+      width={200}
       trigger={null}
       collapsible
       collapsed={collapsed}
-      className="h-[calc(100vh-64px)] overflow-auto"
+      className="overflow-auto"
       style={{ backgroundColor: colorPrimary.startsWith('#') ? colorPrimary : `#${colorPrimary}` }}
     >
       <Menu
-        theme={isDark ? "dark" : "light"}
+        theme="dark"
         mode="inline"
         items={items}
         selectedKeys={selectedKeys}
         onSelect={({ selectedKeys }) => setSelectedKeys(selectedKeys)}
         openKeys={openKeys}
         onOpenChange={(openKeys) => setOpenKeys(openKeys)}
-        className="!border-e-0"
+        style={{ 
+          height: '100%', 
+          borderInlineEnd: 0, 
+          backgroundColor: 'rgba(255, 255, 255, 0.2)' 
+        }}
       />
     </Layout.Sider>
   );

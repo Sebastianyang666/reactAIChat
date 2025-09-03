@@ -25,6 +25,62 @@ const routes = [
           Component: (await import("@/pages/landing")).default,
         }),
       },
+      {
+        path: "dashboard",
+        lazy: async () => ({
+          Component: (await import("@/pages/dashboard")).default,
+        }),
+        children: [
+          {
+            path: "overview",
+            lazy: async () => ({
+              Component: (await import("@/pages/dashboard/overview")).default,
+            }),
+          },
+          {
+            path: "stats/realtime",
+            lazy: async () => ({
+              Component: (await import("@/pages/dashboard/stats/realtime")).default,
+            }),
+          },
+          {
+            path: "stats/history",
+            lazy: async () => ({
+              Component: (await import("@/pages/dashboard/stats/history")).default,
+            }),
+          },
+          {
+            path: "charts/line",
+            lazy: async () => ({
+              Component: (await import("@/pages/dashboard/charts/line")).default,
+            }),
+          },
+          {
+            path: "charts/bar",
+            lazy: async () => ({
+              Component: (await import("@/pages/dashboard/charts/bar")).default,
+            }),
+          },
+          {
+            path: "charts/pie",
+            lazy: async () => ({
+              Component: (await import("@/pages/dashboard/charts/pie")).default,
+            }),
+          },
+        ],
+      },
+      {
+        path: "analytics",
+        lazy: async () => ({
+          Component: (await import("@/pages/analytics")).default,
+        }),
+      },
+      {
+        path: "settings",
+        lazy: async () => ({
+          Component: (await import("@/pages/settings")).default,
+        }),
+      },
     ],
   },
 ];
