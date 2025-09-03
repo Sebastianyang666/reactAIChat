@@ -1,5 +1,5 @@
 import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { Button, Flex, Layout } from "antd";
+import { Button, ColorPicker, Flex, Layout } from "antd";
 import { useNavigate } from "react-router-dom";
 
 import { useSettingsStore } from "@/store/settings";
@@ -13,6 +13,7 @@ export default function MainLayout() {
   const collapsed = useSettingsStore((state) => state.collapsed);
   const setCollapsed = useSettingsStore((state) => state.setCollapsed);
   const colorPrimary = useSettingsStore((state) => state.colorPrimary);
+  const setColorPrimary = useSettingsStore((state) => state.setColorPrimary);
 
   return (
     <Layout className="min-h-screen">
@@ -27,8 +28,16 @@ export default function MainLayout() {
           onClick={() => setCollapsed(!collapsed)}
           className="text-white hover:text-white"
         />
-        <Flex gap={16}>
-          {/* <ThemeSwitch /> */}
+        <Flex gap={16} align="center">
+          <ColorPicker
+            value={colorPrimary}
+            showText={false}
+            size="small"
+            onChange={(color) => {
+              setColorPrimary(color.toHex());
+            }}
+            className="cursor-pointer"
+          />
           <div
             className="flex items-center justify-center gap-1 cursor-pointer text-white"
             onClick={() => {
