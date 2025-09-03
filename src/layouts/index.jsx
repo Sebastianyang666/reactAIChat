@@ -15,32 +15,37 @@ export default function MainLayout() {
   const colorPrimary = useSettingsStore((state) => state.colorPrimary);
 
   return (
-    <Layout hasSider className="w-screen overflow-hidden">
-      <Sider />
-      <Layout>
-        <Layout.Header 
-          className="flex items-center justify-between dark:text-white sticky top-0 z-[999] border-b border-b-gray-200 dark:border-b-gray-700"
-          style={{ backgroundColor: colorPrimary.startsWith('#') ? colorPrimary : `#${colorPrimary}` }}
-        >
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            className="text-inherit hover:text-inherit"
-          />
-          <Flex gap={16}>
-            {/* <ThemeSwitch /> */}
-            <div
-              className="flex items-center justify-center gap-1 cursor-pointer"
-              onClick={() => {
-                navigate("/login");
-              }}
-            >
-              <LogoutOutlined className="text-xl" /> 退出登录
-            </div>
-          </Flex>
-        </Layout.Header>
-        <Content />
+    <Layout className="min-h-screen">
+      {/* 顶部栏 - 占满整个屏幕宽度 */}
+      <Layout.Header 
+        className="flex items-center justify-between text-white border-b border-b-gray-200"
+        style={{ backgroundColor: colorPrimary.startsWith('#') ? colorPrimary : `#${colorPrimary}` }}
+      >
+        <Button
+          type="text"
+          icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+          onClick={() => setCollapsed(!collapsed)}
+          className="text-white hover:text-white"
+        />
+        <Flex gap={16}>
+          {/* <ThemeSwitch /> */}
+          <div
+            className="flex items-center justify-center gap-1 cursor-pointer text-white"
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            <LogoutOutlined className="text-xl" /> 退出登录
+          </div>
+        </Flex>
+      </Layout.Header>
+      
+      {/* 下方内容区域：左侧菜单 + 右侧内容 */}
+      <Layout hasSider>
+        <Sider />
+        <Layout>
+          <Content />
+        </Layout>
       </Layout>
     </Layout>
   );

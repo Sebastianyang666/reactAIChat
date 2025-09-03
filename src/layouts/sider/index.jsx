@@ -95,7 +95,7 @@ export default function Sider() {
       trigger={null}
       collapsible
       collapsed={collapsed}
-      className="h-screen overflow-auto fixed top-0 left-0 bottom-0 dark:text-white"
+      className="h-[calc(100vh-64px)] overflow-auto"
       style={{ backgroundColor: colorPrimary.startsWith('#') ? colorPrimary : `#${colorPrimary}` }}
     >
       <Link
