@@ -1,18 +1,10 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: yangshengpeng
- * @Date: 2025-09-03 15:19:38
- * @LastEditors: yangshengpeng
- * @LastEditTime: 2025-09-03 15:49:15
- */
 import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button, Flex, Layout } from "antd";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-// import ThemeSwitch from "@/components/theme-switch";
 import { useSettingsStore } from "@/store/settings";
 
+import Content from "./content";
 import Sider from "./sider";
 
 export default function MainLayout() {
@@ -44,9 +36,7 @@ export default function MainLayout() {
             </div>
           </Flex>
         </Layout.Header>
-        <Layout.Content className="min-h-[calc(100vh-var(--layout-header-height))] p-4">
-          <Outlet /> {/* Outlet是子路由的占位符 */}
-        </Layout.Content>
+        <Content />
       </Layout>
     </Layout>
   );
