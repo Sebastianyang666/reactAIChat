@@ -1,35 +1,15 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: yangshengpeng
+ * @Date: 2025-08-27 14:06:51
+ * @LastEditors: yangshengpeng
+ * @LastEditTime: 2025-09-03 15:25:34
+ */
+import { RouterProvider } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
+import { router } from "@/router";
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+export default function App() {
+  return <RouterProvider router={router} fallbackElement={<div>Loading...</div>} />;
 }
-
-export default App
