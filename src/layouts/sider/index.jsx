@@ -98,13 +98,6 @@ export default function Sider() {
       className="h-[calc(100vh-64px)] overflow-auto"
       style={{ backgroundColor: colorPrimary.startsWith('#') ? colorPrimary : `#${colorPrimary}` }}
     >
-      <Link
-        className="font-bold text-2xl hover:text-current h-[var(--layout-header-height)] flex justify-center items-center gap-2"
-        to="/"
-      >
-        {/* <ReactIcon className="size-6" /> */}
-        {collapsed ? null : "React Admin"}
-      </Link>
       <Menu
         theme={isDark ? "dark" : "light"}
         mode="inline"

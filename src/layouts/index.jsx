@@ -1,6 +1,14 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: yangshengpeng
+ * @Date: 2025-09-03 17:19:33
+ * @LastEditors: yangshengpeng
+ * @LastEditTime: 2025-09-03 17:20:10
+ */
 import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button, ColorPicker, Flex, Layout } from "antd";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useSettingsStore } from "@/store/settings";
 
@@ -19,15 +27,27 @@ export default function MainLayout() {
     <Layout className="min-h-screen">
       {/* 顶部栏 - 占满整个屏幕宽度 */}
       <Layout.Header 
-        className="flex items-center justify-between text-white border-b border-b-gray-200"
-        style={{ backgroundColor: colorPrimary.startsWith('#') ? colorPrimary : `#${colorPrimary}` }}
+        className="flex items-center justify-between text-white border-b"
+        style={{ 
+          backgroundColor: colorPrimary.startsWith('#') ? colorPrimary : `#${colorPrimary}`, 
+          paddingInline: '16px',
+          borderBottomColor: colorPrimary.startsWith('#') ? colorPrimary : `#${colorPrimary}`
+        }}
       >
-        <Button
-          type="text"
-          icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-          onClick={() => setCollapsed(!collapsed)}
-          className="text-white hover:text-white"
-        />
+        <div className="flex items-center gap-3">
+          <Link
+            className="font-bold text-2xl hover:text-current text-white flex items-center"
+            to="/"
+          >
+             React Admin
+          </Link>
+          <Button
+            type="text"
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setCollapsed(!collapsed)}
+            className="text-white hover:text-white"
+          />
+        </div>
         <Flex gap={16} align="center">
           <ColorPicker
             value={colorPrimary}
